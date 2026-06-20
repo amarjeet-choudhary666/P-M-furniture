@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { RotateCcw, Download, Sofa, BedDouble, UtensilsCrossed, Lamp } from 'lucide-react'
+import {
+  RotateCcw, Download,
+  Sofa, BedDouble, UtensilsCrossed, Lamp,
+  Monitor, Armchair, BookOpen, SquareDashed, type LucideIcon
+} from 'lucide-react'
 
 type FurnitureItem = {
   id: string
   label: string
-  icon: string
-  size: [number, number] // grid cells [cols, rows]
+  Icon: LucideIcon
+  size: [number, number]
   color: string
 }
 
@@ -18,14 +22,14 @@ type PlacedItem = {
 }
 
 const FURNITURE_PALETTE: FurnitureItem[] = [
-  { id: 'sofa',    label: 'Sofa',         icon: '🛋',  size: [3, 2], color: '#c49a3a' },
-  { id: 'bed',     label: 'King Bed',     icon: '🛏',  size: [3, 3], color: '#5a80c8' },
-  { id: 'table',   label: 'Dining Table', icon: '🍽',  size: [3, 2], color: '#9a5aaa' },
-  { id: 'desk',    label: 'Desk',         icon: '💻',  size: [3, 1], color: '#5a9a5a' },
-  { id: 'lamp',    label: 'Floor Lamp',   icon: '💡',  size: [1, 1], color: '#c4605a' },
-  { id: 'chair',   label: 'Armchair',     icon: '🪑',  size: [2, 2], color: '#8b6914' },
-  { id: 'shelf',   label: 'Bookshelf',    icon: '📚',  size: [1, 3], color: '#3a5a3a' },
-  { id: 'rug',     label: 'Area Rug',     icon: '▭',   size: [4, 3], color: '#c49a3a' },
+  { id: 'sofa',    label: 'Sofa',         Icon: Sofa,             size: [3, 2], color: '#c49a3a' },
+  { id: 'bed',     label: 'King Bed',     Icon: BedDouble,        size: [3, 3], color: '#5a80c8' },
+  { id: 'table',   label: 'Dining Table', Icon: UtensilsCrossed,  size: [3, 2], color: '#9a5aaa' },
+  { id: 'desk',    label: 'Desk',         Icon: Monitor,          size: [3, 1], color: '#5a9a5a' },
+  { id: 'lamp',    label: 'Floor Lamp',   Icon: Lamp,             size: [1, 1], color: '#c4605a' },
+  { id: 'chair',   label: 'Armchair',     Icon: Armchair,         size: [2, 2], color: '#8b6914' },
+  { id: 'shelf',   label: 'Bookshelf',    Icon: BookOpen,         size: [1, 3], color: '#3a5a3a' },
+  { id: 'rug',     label: 'Area Rug',     Icon: SquareDashed,     size: [4, 3], color: '#c49a3a' },
 ]
 
 const GRID_COLS = 10
@@ -141,7 +145,9 @@ export default function RoomPlanner() {
                     border:       `2px solid ${selected.id === item.id ? 'var(--color-charcoal)' : 'transparent'}`,
                   }}
                 >
-                  <span className="text-2xl">{item.icon}</span>
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: `${item.color}20` }}>
+                    <item.Icon size={18} style={{ color: item.color }} />
+                  </div>
                   <span className="text-[11px] font-medium leading-tight">{item.label}</span>
                   <span className="text-[10px] opacity-60">
                     {item.size[0]}×{item.size[1]}
@@ -247,11 +253,14 @@ export default function RoomPlanner() {
                       >
                         {isTop && placed_ && (
                           <div
-                            className="absolute inset-0 flex items-center justify-center text-base select-none"
+                            className="absolute inset-0 flex items-center justify-center select-none"
                             style={{ zIndex: 2 }}
                             title={`${placed_.item.label} — click to remove`}
                           >
-                            {placed_.item.icon}
+                            <placed_.item.Icon
+                              size={Math.min(placed_.item.size[0], placed_.item.size[1]) >= 2 ? 18 : 12}
+                              style={{ color: placed_.item.color }}
+                            />
                           </div>
                         )}
                       </div>

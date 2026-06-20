@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Heart, ShoppingBag, Trash2 } from 'lucide-react'
+import { X, Heart, ShoppingBag, Trash2, Sofa, BedDouble, UtensilsCrossed, Briefcase, Lamp } from 'lucide-react'
 import type { Product } from '../data/products'
 
 interface WishlistDrawerProps {
@@ -10,7 +10,16 @@ interface WishlistDrawerProps {
   onAddToCart: (product: Product) => void
 }
 
-const EMOJI: Record<string, string> = { sofa: '🛋', bed: '🛏', dining: '🪑', office: '💼', decor: '🏺' }
+function CategoryIcon({ category, size = 20 }: { category: string; size?: number }) {
+  const map: Record<string, React.ReactNode> = {
+    sofa:   <Sofa size={size} />,
+    bed:    <BedDouble size={size} />,
+    dining: <UtensilsCrossed size={size} />,
+    office: <Briefcase size={size} />,
+    decor:  <Lamp size={size} />,
+  }
+  return <span className="text-[#8b6914]">{map[category] ?? <ShoppingBag size={size} />}</span>
+}
 
 export default function WishlistDrawer({ open, items, onClose, onRemove, onAddToCart }: WishlistDrawerProps) {
   return (
@@ -59,8 +68,8 @@ export default function WishlistDrawer({ open, items, onClose, onRemove, onAddTo
                     initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 40 }}
                     className="flex gap-4 px-6 py-4 border-b border-black/[0.06]"
                   >
-                    <div className="w-20 h-20 rounded-xl flex-shrink-0 flex items-center justify-center bg-[#f0ebe3] text-3xl">
-                      {EMOJI[product.category] ?? '✦'}
+                    <div className="w-20 h-20 rounded-xl flex-shrink-0 flex items-center justify-center bg-[#f0ebe3]">
+                      <CategoryIcon category={product.category} size={28} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium text-sm truncate text-[#1a1a1a]">{product.name}</h3>

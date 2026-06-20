@@ -1,9 +1,18 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { SlidersHorizontal } from 'lucide-react'
+import {
+  SlidersHorizontal,
+  LayoutGrid, Sofa, BedDouble, UtensilsCrossed, Briefcase, Lamp,
+  type LucideIcon
+} from 'lucide-react'
 import { CATEGORIES, getProductsByCategory } from '../data/products'
 import type { Product } from '../data/products'
 import ProductCard from './ProductCard'
+
+// Map iconName strings to actual Lucide components
+const ICON_MAP: Record<string, LucideIcon> = {
+  LayoutGrid, Sofa, BedDouble, UtensilsCrossed, Briefcase, Lamp,
+}
 
 interface ProductGridProps {
   onAddToCart: (product: Product) => void
@@ -59,17 +68,20 @@ export default function ProductGrid({ onAddToCart, onWishlist, onQuickView, wish
           transition={{ duration:0.6, delay:0.1 }}
           className="flex flex-wrap gap-2 mb-12"
         >
-          {CATEGORIES.map((cat) => (
-            <button key={cat.id} onClick={() => setActiveCategory(cat.id)}
-              className={`relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border ${
-                activeCategory === cat.id
-                  ? 'bg-[#2c2c2c] text-white border-[#2c2c2c] shadow-[0_8px_32px_rgba(44,44,44,0.12)]'
-                  : 'bg-white text-[#2c2c2c] border-black/10 hover:border-[#2c2c2c]/30'
-              }`}>
-              <span className="mr-1.5">{cat.icon}</span>
-              {cat.label}
-            </button>
-          ))}
+          {CATEGORIES.map((cat) => {
+            const Icon = ICON_MAP[cat.iconName]
+            return (
+              <button key={cat.id} onClick={() => setActiveCategory(cat.id)}
+                className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border ${
+                  activeCategory === cat.id
+                    ? 'bg-[#2c2c2c] text-white border-[#2c2c2c] shadow-[0_8px_32px_rgba(44,44,44,0.12)]'
+                    : 'bg-white text-[#2c2c2c] border-black/10 hover:border-[#2c2c2c]/30'
+                }`}>
+                {Icon && <Icon size={13} />}
+                {cat.label}
+              </button>
+            )
+          })}
         </motion.div>
 
         {/* Count */}

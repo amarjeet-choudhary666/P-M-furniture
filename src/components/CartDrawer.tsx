@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight, Tag } from 'lucide-react'
+import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight, Tag, Sofa, BedDouble, UtensilsCrossed, Briefcase, Lamp } from 'lucide-react'
 import type { Product } from '../data/products'
 
 export interface CartItem { product: Product; qty: number; material: string }
@@ -13,7 +13,16 @@ interface CartDrawerProps {
   onCheckout: () => void
 }
 
-const EMOJI: Record<string, string> = { sofa: '🛋', bed: '🛏', dining: '🪑', office: '💼', decor: '🏺' }
+function CategoryIcon({ category, size = 20 }: { category: string; size?: number }) {
+  const map: Record<string, React.ReactNode> = {
+    sofa:   <Sofa size={size} />,
+    bed:    <BedDouble size={size} />,
+    dining: <UtensilsCrossed size={size} />,
+    office: <Briefcase size={size} />,
+    decor:  <Lamp size={size} />,
+  }
+  return <span className="text-[#8b6914]">{map[category] ?? <ShoppingBag size={size} />}</span>
+}
 
 export default function CartDrawer({ open, items, onClose, onRemove, onQtyChange, onCheckout }: CartDrawerProps) {
   const subtotal = items.reduce((s, i) => s + i.product.price * i.qty, 0)
@@ -68,8 +77,8 @@ export default function CartDrawer({ open, items, onClose, onRemove, onQtyChange
                     transition={{ type: 'spring', stiffness: 300, damping: 28 }}
                     className="flex gap-4 px-6 py-4 border-b border-black/[0.06]"
                   >
-                    <div className="w-20 h-20 rounded-xl flex-shrink-0 flex items-center justify-center bg-[#f0ebe3] text-3xl">
-                      {EMOJI[item.product.category] ?? '✦'}
+                    <div className="w-20 h-20 rounded-xl flex-shrink-0 flex items-center justify-center bg-[#f0ebe3]">
+                      <CategoryIcon category={item.product.category} size={28} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium text-sm leading-snug truncate text-[#1a1a1a]">{item.product.name}</h3>

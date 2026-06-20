@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Check, CreditCard, Lock, ArrowRight, ArrowLeft } from 'lucide-react'
+import { X, Check, CreditCard, Lock, ArrowRight, ArrowLeft, Sofa, BedDouble, UtensilsCrossed, Briefcase, Lamp, ShoppingBag } from 'lucide-react'
 import type { CartItem } from './CartDrawer'
 
 interface CheckoutModalProps {
@@ -11,7 +11,17 @@ interface CheckoutModalProps {
 }
 
 const STEPS = ['Cart Review', 'Shipping', 'Payment', 'Confirmed']
-const EMOJI: Record<string, string> = { sofa: '🛋', bed: '🛏', dining: '🪑', office: '💼', decor: '🏺' }
+
+function CategoryIcon({ category, size = 18 }: { category: string; size?: number }) {
+  const map: Record<string, React.ReactNode> = {
+    sofa:   <Sofa size={size} />,
+    bed:    <BedDouble size={size} />,
+    dining: <UtensilsCrossed size={size} />,
+    office: <Briefcase size={size} />,
+    decor:  <Lamp size={size} />,
+  }
+  return <span className="text-[#c49a3a]">{map[category] ?? <ShoppingBag size={size} />}</span>
+}
 
 export default function CheckoutModal({ open, items, onClose, onSuccess }: CheckoutModalProps) {
   const [step, setStep] = useState(0)
@@ -56,8 +66,8 @@ export default function CheckoutModal({ open, items, onClose, onSuccess }: Check
                   {items.map((item) => (
                     <div key={item.product.id} className="flex justify-between items-start gap-3">
                       <div className="flex gap-3">
-                        <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0 bg-white/[0.06]">
-                          {EMOJI[item.product.category] ?? '✦'}
+                        <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-white/[0.06]">
+                          <CategoryIcon category={item.product.category} size={20} />
                         </div>
                         <div>
                           <p className="text-sm font-medium text-white">{item.product.name}</p>
@@ -155,15 +165,14 @@ export default function CheckoutModal({ open, items, onClose, onSuccess }: Check
 }
 
 function CartReview({ items }: { items: CartItem[] }) {
-  const EMOJI: Record<string, string> = { sofa: '🛋', bed: '🛏', dining: '🪑', office: '💼', decor: '🏺' }
   return (
     <div>
       <h3 className="text-xl font-semibold mb-6 text-[#1a1a1a]" style={{ fontFamily: 'var(--font-serif)' }}>Review Your Order</h3>
       <div className="space-y-4">
         {items.map((item) => (
           <div key={item.product.id} className="flex gap-4 p-4 rounded-2xl bg-[#f0ebe3]">
-            <div className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 bg-white">
-              {EMOJI[item.product.category] ?? '✦'}
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 bg-white">
+              <CategoryIcon category={item.product.category} size={22} />
             </div>
             <div className="flex-1">
               <p className="font-medium text-sm text-[#1a1a1a]">{item.product.name}</p>

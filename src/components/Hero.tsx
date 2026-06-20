@@ -209,11 +209,11 @@ export default function Hero({ onShopClick }: { onShopClick: () => void }) {
 
       {/* Scroll cue */}
       <motion.div
-        animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 right-8 lg:right-20 flex flex-col items-center gap-2 pointer-events-none"
+        animate={{ y: [0, 7, 0] }} transition={{ repeat: Infinity, duration: 2 }}
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none"
       >
-        <div className="w-px h-12 bg-gradient-to-b from-white/40 to-transparent" />
-        <span className="text-[10px] tracking-widest uppercase rotate-90 origin-center text-white/40 inline-block mt-1">Scroll</span>
+        <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
+        <span className="text-[10px] text-white/30 uppercase tracking-widest">Scroll</span>
       </motion.div>
     </motion.section>
   )

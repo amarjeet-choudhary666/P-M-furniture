@@ -291,7 +291,7 @@ function HeroSection({ onShopClick, onNavigate }: { onShopClick: () => void; onN
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
   return (
-    <div ref={ref} className="relative w-full h-[72vh] min-h-[500px] overflow-hidden flex items-center">
+    <div ref={ref} className="relative w-full h-[80vh] min-h-[560px] overflow-hidden flex items-center">
       {/* BG layers */}
       <motion.div style={{ y }} className="absolute inset-0 scale-110 bg-gradient-to-br from-[#0f0f0f] via-[#1a1208] to-[#2a1f0a]" />
       <div className="absolute inset-0 opacity-25" style={{ background: 'radial-gradient(ellipse at 65% 40%, #c49a3a 0%, transparent 55%)' }} />
@@ -313,21 +313,22 @@ function HeroSection({ onShopClick, onNavigate }: { onShopClick: () => void; onN
       </motion.div>
 
       {/* SVG decoration — right side */}
-      <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:flex items-center justify-center pointer-events-none">
+      <div className="absolute right-0 top-0 bottom-0 w-[45%] hidden lg:flex items-center justify-center pr-12 pointer-events-none">
         <motion.div initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.4 }}
-          className="w-80 h-80 rounded-3xl border border-white/[0.07] bg-white/[0.03] backdrop-blur-sm flex items-center justify-center shadow-[0_40px_80px_rgba(0,0,0,0.4)]">
+          className="w-[340px] h-[300px] rounded-3xl border border-white/[0.07] bg-white/[0.03] backdrop-blur-sm flex items-center justify-center shadow-[0_40px_80px_rgba(0,0,0,0.4)]">
           <HeroFurnitureSVG />
         </motion.div>
       </div>
 
       {/* Content */}
-      <motion.div style={{ opacity }} className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 w-full">
-        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }}>
+      <motion.div style={{ opacity }} className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-16 w-full">
+        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }}
+          className="lg:max-w-[55%]">
           {/* Badge */}
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#c49a3a]/15 border border-[#c49a3a]/30 mb-6">
             <Sparkles size={13} className="text-[#c49a3a]" />
-            <span className="text-[11px] uppercase tracking-[0.2em] text-[#c49a3a] font-medium">Just Landed — 2025 Collection</span>
+            <span className="text-[11px] uppercase tracking-[0.2em] text-[#c49a3a] font-medium">Just Landed — 2026 Collection</span>
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1 }}
@@ -357,7 +358,7 @@ function HeroSection({ onShopClick, onNavigate }: { onShopClick: () => void; onN
 
           {/* Stats */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}
-            className="flex items-center gap-8 mt-14">
+            className="flex items-center gap-8 mt-10">
             {[['24', 'New Pieces'], ['100%', 'Handcrafted'], ['Free', 'Delivery >$500']].map(([val, lbl]) => (
               <div key={lbl}>
                 <p className="text-white font-semibold text-lg" style={{ fontFamily: 'var(--font-serif)' }}>{val}</p>

@@ -5,6 +5,8 @@ import {
   ShoppingBag, Heart, Eye, Star, Clock, Truck,
   Shield, RotateCcw, Award, Leaf, Mail, Zap,
   ChevronRight, Package, Flame,
+  Sofa, BedDouble, UtensilsCrossed, Briefcase, Archive,
+  Lamp, type LucideIcon,
 } from 'lucide-react'
 import { PRODUCTS, type Product } from '../data/products'
 
@@ -133,14 +135,14 @@ function SectionHeader({ eyebrow, headline, sub }: { eyebrow: string; headline: 
 }
 
 // ─── Sale Categories ──────────────────────────────────────────────
-const SALE_CATS = [
-  { name: 'Sofas',       emoji: '🛋️', discount: 40, count: 38, bg: '#c4a87822' },
-  { name: 'Beds',        emoji: '🛏️', discount: 55, count: 24, bg: '#8a9e8a22' },
-  { name: 'Dining Sets', emoji: '🍽️', discount: 35, count: 19, bg: '#c4785822' },
-  { name: 'Coffee Tables', emoji: '◼', discount: 50, count: 31, bg: '#a0a0a022' },
-  { name: 'Office',      emoji: '💼', discount: 45, count: 22, bg: '#a05c2c22' },
-  { name: 'Storage',     emoji: '📦', discount: 60, count: 17, bg: '#7a726822' },
-  { name: 'Outdoor',     emoji: '🌿', discount: 70, count: 15, bg: '#6b8f7122' },
+const SALE_CATS: { name: string; Icon: LucideIcon; discount: number; count: number; bg: string }[] = [
+  { name: 'Sofas',         Icon: Sofa,           discount: 40, count: 38, bg: '#c4a87822' },
+  { name: 'Beds',          Icon: BedDouble,      discount: 55, count: 24, bg: '#8a9e8a22' },
+  { name: 'Dining Sets',   Icon: UtensilsCrossed,discount: 35, count: 19, bg: '#c4785822' },
+  { name: 'Coffee Tables', Icon: Lamp,           discount: 50, count: 31, bg: '#a0a0a022' },
+  { name: 'Office',        Icon: Briefcase,      discount: 45, count: 22, bg: '#a05c2c22' },
+  { name: 'Storage',       Icon: Archive,        discount: 60, count: 17, bg: '#7a726822' },
+  { name: 'Outdoor',       Icon: Leaf,           discount: 70, count: 15, bg: '#6b8f7122' },
 ]
 
 function CategoryCard({ cat, i }: { cat: typeof SALE_CATS[0]; i: number }) {
@@ -154,7 +156,7 @@ function CategoryCard({ cat, i }: { cat: typeof SALE_CATS[0]; i: number }) {
           -{cat.discount}%
         </div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-4xl group-hover:scale-110 transition-transform duration-300">{cat.emoji}</span>
+          <cat.Icon size={36} className="group-hover:scale-110 transition-transform duration-300 text-[#6b5030]" />
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-2.5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
           style={{ background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(6px)' }}>
@@ -315,10 +317,10 @@ function SaleCard({ product, onAddToCart, onWishlist, onQuickView, wishlisted }:
 }
 
 // ─── Bundle Card ──────────────────────────────────────────────────
-const BUNDLES = [
-  { name: 'Living Room Bundle', emoji: '🛋️', items: ['Velour Cloud Sofa', 'Mist Coffee Table', 'Arc Floor Lamp'], original: 4090, bundle: 2790, accent: '#c4a878' },
-  { name: 'Bedroom Bundle',     emoji: '🛏️', items: ['Oslo Platform Bed', 'Zephyr Side Table ×2', 'Solis Pendant Light'], original: 4390, bundle: 2890, accent: '#8a9e8a' },
-  { name: 'Dining Bundle',      emoji: '🍽️', items: ['Loft Dining Table', 'Porto Dining Chair ×4'], original: 4520, bundle: 2980, accent: '#c47858' },
+const BUNDLES: { name: string; Icon: LucideIcon; items: string[]; original: number; bundle: number; accent: string }[] = [
+  { name: 'Living Room Bundle', Icon: Sofa,           items: ['Velour Cloud Sofa', 'Mist Coffee Table', 'Arc Floor Lamp'], original: 4090, bundle: 2790, accent: '#c4a878' },
+  { name: 'Bedroom Bundle',     Icon: BedDouble,      items: ['Oslo Platform Bed', 'Zephyr Side Table ×2', 'Solis Pendant Light'], original: 4390, bundle: 2890, accent: '#8a9e8a' },
+  { name: 'Dining Bundle',      Icon: UtensilsCrossed,items: ['Loft Dining Table', 'Porto Dining Chair ×4'], original: 4520, bundle: 2980, accent: '#c47858' },
 ]
 
 function BundleCard({ b, i }: { b: typeof BUNDLES[0]; i: number }) {
@@ -331,7 +333,7 @@ function BundleCard({ b, i }: { b: typeof BUNDLES[0]; i: number }) {
       style={{ background: '#fff', borderColor: 'rgba(44,44,44,0.08)' }}>
       <div className="absolute top-0 right-0 w-28 h-28 rounded-bl-[40px] opacity-[0.07] group-hover:opacity-[0.13] transition-opacity duration-300"
         style={{ background: b.accent }} />
-      <div className="text-3xl mb-4">{b.emoji}</div>
+      <div className="mb-4"><b.Icon size={28} style={{ color: b.accent }} /></div>
       <span className="inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white mb-3"
         style={{ background: '#B04A22' }}>
         Save {pct}%
@@ -366,11 +368,11 @@ function BundleCard({ b, i }: { b: typeof BUNDLES[0]; i: number }) {
 // ─── Testimonials ─────────────────────────────────────────────────
 const REVIEWS = [
   { name: 'Alexandra Chen', loc: 'New York, NY', initials: 'AC', accent: '#c4a878', item: 'Oslo Platform Bed', rating: 5,
-    text: 'The Oslo Bed transformed my bedroom into a sanctuary. LUMINA\'s craftsmanship is in a different league — you can feel the quality immediately. The sale pricing made it accessible without compromising an inch of luxury.' },
+    text: 'The Oslo Bed transformed my bedroom into a sanctuary. P&M Craft\'s craftsmanship is in a different league — you can feel the quality immediately. The sale pricing made it accessible without compromising an inch of luxury.' },
   { name: 'Marcus Rowell', loc: 'San Francisco, CA', initials: 'MR', accent: '#8a9e8a', item: 'Velour Cloud Sofa', rating: 5,
     text: 'Ordered the Velour Cloud Sofa during the sale and I\'m absolutely floored. Three months in and it looks as pristine as day one. Customer service was impeccable through the entire delivery process.' },
   { name: 'Sophie Laurent', loc: 'Chicago, IL', initials: 'SL', accent: '#c47858', item: 'Float Lounge Chair', rating: 5,
-    text: 'I\'ve furnished three homes and LUMINA is genuinely the best I\'ve encountered at any price point. The Float Lounge Chair I picked up on sale is now the centerpiece of my living room.' },
+    text: 'I\'ve furnished three homes and P&M Craft is genuinely the best I\'ve encountered at any price point. The Float Lounge Chair I picked up on sale is now the centerpiece of my living room.' },
 ]
 
 // ─── Trust benefits ───────────────────────────────────────────────
@@ -427,7 +429,7 @@ export default function SalePage({ onAddToCart, onWishlist, onQuickView, wishlis
           <Truck size={11} /> Free Shipping Over $500
         </span>
         <span className="hidden md:inline opacity-40">|</span>
-        <span className="hidden md:inline">Code: <strong>LUMINA70</strong></span>
+        <span className="hidden md:inline">Code: <strong>PMCRAFT70</strong></span>
       </div>
 
       {/* ── Hero ─────────────────────────────────────────────────── */}

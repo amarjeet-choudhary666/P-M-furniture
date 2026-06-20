@@ -6,7 +6,7 @@ import {
   Heart, ShoppingBag, Eye, Star, ChevronLeft, ChevronRight,
   Truck, Shield, Leaf, RotateCcw,
   Sofa, BedDouble, UtensilsCrossed, Briefcase, Lamp,
-  Sparkles, TrendingUp, Grid3X3, List, type LucideIcon
+  Sparkles, TrendingUp, Grid3X3, List, CheckCircle, type LucideIcon
 } from 'lucide-react'
 import type { Product } from '../data/products'
 import { PRODUCTS } from '../data/products'
@@ -199,7 +199,7 @@ export default function NewArrivalsPage({ onAddToCart, onWishlist, onQuickView, 
                       <label key={m} className="flex items-center gap-2.5 cursor-pointer group">
                         <div onClick={() => toggleMat(m)}
                           className={`w-4 h-4 rounded flex items-center justify-center border transition-all flex-shrink-0 ${selMaterials.includes(m) ? 'bg-[#1a1a1a] border-[#1a1a1a]' : 'border-black/20 group-hover:border-[#1a1a1a]'}`}>
-                          {selMaterials.includes(m) && <span className="text-white text-[9px]">✓</span>}
+                          {selMaterials.includes(m) && <CheckCircle size={9} className="text-white flex-shrink-0" />}
                         </div>
                         <span className="text-sm text-[#2c2c2c]">{m}</span>
                       </label>
@@ -738,7 +738,7 @@ function WhyChooseUs() {
           className="text-center mb-12">
           <span className="section-label mb-3">Our Promise</span>
           <h2 className="font-semibold text-[#1a1a1a]" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.8rem,4vw,3rem)' }}>
-            Why Choose LUMINA
+            Why Choose P&M Craft
           </h2>
         </motion.div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -853,7 +853,7 @@ function NewsletterSection() {
           {done ? (
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
               className="flex items-center justify-center gap-2 text-[#c49a3a] font-medium">
-              <span className="text-2xl">✓</span> You're on the list! Welcome to LUMINA.
+              <CheckCircle size={20} className="flex-shrink-0" /> You're on the list! Welcome to P&M Craft.
             </motion.div>
           ) : (
             <form onSubmit={e => { e.preventDefault(); if (email) setDone(true) }}

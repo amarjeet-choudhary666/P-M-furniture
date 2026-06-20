@@ -4,6 +4,9 @@ import { motion, AnimatePresence, useInView } from 'framer-motion'
 import {
   ShoppingBag, Heart, Eye, Star, ChevronLeft, ChevronRight,
   ArrowRight, Calendar, CheckCircle, Mail, Zap,
+  Sofa, BedDouble, UtensilsCrossed, Briefcase, Lamp, Tv,
+  Archive, Home, Leaf, Palette, Bell, Utensils, Users, Package,
+  type LucideIcon,
 } from 'lucide-react'
 import { PRODUCTS, type Product } from '../data/products'
 
@@ -17,54 +20,54 @@ interface RoomsPageProps {
 
 // ─── Data ─────────────────────────────────────────────────────────
 const ROOMS = [
-  { id: 'living',  name: 'Living Room',     count: 124, accent: '#c47858',
+  { id: 'living',  name: 'Living Room',     Icon: Sofa,           count: 124, accent: '#c47858',
     gradient: 'linear-gradient(135deg, #c4785828 0%, #f0ebe380 50%, #e8ddd060 100%)',
     desc: 'Gather, relax, and entertain in style' },
-  { id: 'bedroom', name: 'Bedroom',          count: 98,  accent: '#8a9e8a',
+  { id: 'bedroom', name: 'Bedroom',          Icon: BedDouble,      count: 98,  accent: '#8a9e8a',
     gradient: 'linear-gradient(135deg, #8a9e8a28 0%, #d4b8b050 50%, #f0ebe360 100%)',
     desc: 'Design your perfect sanctuary for rest' },
-  { id: 'dining',  name: 'Dining Room',      count: 76,  accent: '#c4a878',
+  { id: 'dining',  name: 'Dining Room',      Icon: UtensilsCrossed,count: 76,  accent: '#c4a878',
     gradient: 'linear-gradient(135deg, #c4a87828 0%, #f5f0e870 50%, #e8ddd050 100%)',
     desc: 'Set the stage for memorable meals' },
-  { id: 'office',  name: 'Home Office',      count: 64,  accent: '#5a6070',
+  { id: 'office',  name: 'Home Office',      Icon: Briefcase,      count: 64,  accent: '#5a6070',
     gradient: 'linear-gradient(135deg, #5a607035 0%, #8c8c8c25 50%, #f0ebe350 100%)',
     desc: 'Elevate your productivity in style' },
-  { id: 'kitchen', name: 'Kitchen',          count: 45,  accent: '#a07040',
+  { id: 'kitchen', name: 'Kitchen',          Icon: Utensils,       count: 45,  accent: '#a07040',
     gradient: 'linear-gradient(135deg, #c8b09035 0%, #faf8f560 50%, #e8ddd040 100%)',
     desc: 'Practical elegance for everyday life' },
-  { id: 'outdoor', name: 'Outdoor & Patio',  count: 53,  accent: '#6b8f71',
+  { id: 'outdoor', name: 'Outdoor & Patio',  Icon: Leaf,           count: 53,  accent: '#6b8f71',
     gradient: 'linear-gradient(135deg, #6b8f7130 0%, #e8ddd060 50%, #c8b09030 100%)',
     desc: 'Extend your living space into nature' },
-  { id: 'kids',    name: 'Kids Room',        count: 38,  accent: '#c49a3a',
+  { id: 'kids',    name: 'Kids Room',        Icon: Palette,        count: 38,  accent: '#c49a3a',
     gradient: 'linear-gradient(135deg, #c49a3a28 0%, #e8d4a040 50%, #a0c4d835 100%)',
     desc: 'Safe, fun furniture for curious minds' },
-  { id: 'guest',   name: 'Guest Room',       count: 42,  accent: '#9a8aaa',
+  { id: 'guest',   name: 'Guest Room',       Icon: Bell,           count: 42,  accent: '#9a8aaa',
     gradient: 'linear-gradient(135deg, #9a8aaa28 0%, #d4cfc850 50%, #f0ebe360 100%)',
     desc: 'Make every visitor feel at home' },
 ]
 
-const ROOM_COLLECTIONS: Record<string, { name: string; emoji: string; count: number }[]> = {
+const ROOM_COLLECTIONS: Record<string, { name: string; Icon: LucideIcon; count: number }[]> = {
   living:  [
-    { name: 'Sofas & Sectionals', emoji: '🛋️', count: 42 },
-    { name: 'Coffee Tables',      emoji: '◼',   count: 31 },
-    { name: 'TV Units',           emoji: '📺',   count: 18 },
-    { name: 'Accent Chairs',      emoji: '🪑',   count: 33 },
+    { name: 'Sofas & Sectionals', Icon: Sofa,           count: 42 },
+    { name: 'Coffee Tables',      Icon: Lamp,           count: 31 },
+    { name: 'TV Units',           Icon: Tv,             count: 18 },
+    { name: 'Accent Chairs',      Icon: Archive,        count: 33 },
   ],
   bedroom: [
-    { name: 'Beds & Frames',      emoji: '🛏️',   count: 36 },
-    { name: 'Wardrobes',          emoji: '🚪',   count: 24 },
-    { name: 'Nightstands',        emoji: '🕯️',  count: 28 },
-    { name: 'Dressers',           emoji: '🗄️',  count: 10 },
+    { name: 'Beds & Frames',      Icon: BedDouble,      count: 36 },
+    { name: 'Wardrobes',          Icon: Archive,        count: 24 },
+    { name: 'Nightstands',        Icon: Lamp,           count: 28 },
+    { name: 'Dressers',           Icon: Package,        count: 10 },
   ],
   dining:  [
-    { name: 'Dining Tables',      emoji: '🍽️',   count: 28 },
-    { name: 'Dining Chairs',      emoji: '🪑',   count: 34 },
-    { name: 'Sideboards',         emoji: '📦',   count: 14 },
+    { name: 'Dining Tables',      Icon: UtensilsCrossed,count: 28 },
+    { name: 'Dining Chairs',      Icon: Users,          count: 34 },
+    { name: 'Sideboards',         Icon: Archive,        count: 14 },
   ],
   office:  [
-    { name: 'Office Desks',       emoji: '💼',   count: 22 },
-    { name: 'Ergonomic Chairs',   emoji: '🪑',   count: 18 },
-    { name: 'Storage Cabinets',   emoji: '📦',   count: 24 },
+    { name: 'Office Desks',       Icon: Briefcase,      count: 22 },
+    { name: 'Ergonomic Chairs',   Icon: Users,          count: 18 },
+    { name: 'Storage Cabinets',   Icon: Archive,        count: 24 },
   ],
 }
 
@@ -76,21 +79,21 @@ const ROOM_PRODUCTS: Record<string, number[]> = {
 }
 
 const DESIGN_TIPS = [
-  { room: 'Living Room', emoji: '🛋️', accent: '#c47858',
+  { room: 'Living Room', Icon: Sofa, accent: '#c47858',
     tips: [
       'Anchor with a rug that defines the seating zone',
       'Layer lighting: floor, table, and overhead',
       'Mix textures — velvet, linen, and leather add depth',
       'Leave 18" of breathing room from walls',
     ] },
-  { room: 'Bedroom', emoji: '🛏️', accent: '#8a9e8a',
+  { room: 'Bedroom', Icon: BedDouble, accent: '#8a9e8a',
     tips: [
       'Centre the bed on the primary wall as the focal point',
       'Choose natural fibres — linen and cotton breathe best',
       'Install blackout curtains for true rest',
       'Keep 24" clearance on each side of the bed',
     ] },
-  { room: 'Home Office', emoji: '💼', accent: '#5a6070',
+  { room: 'Home Office', Icon: Briefcase, accent: '#5a6070',
     tips: [
       'Desk perpendicular to windows minimises glare',
       'Invest in ergonomic seating — your spine will thank you',
@@ -100,23 +103,23 @@ const DESIGN_TIPS = [
 ]
 
 const ROOM_PACKAGES = [
-  { name: 'Essential Living Room', emoji: '🛋️', accent: '#c47858',
+  { name: 'Essential Living Room', Icon: Sofa,           accent: '#c47858',
     items: ['3-Seater Sofa', 'Coffee Table', 'TV Unit', 'Floor Lamp'],
     original: 6490, bundle: 4390 },
-  { name: 'Master Bedroom Suite', emoji: '🛏️', accent: '#8a9e8a',
+  { name: 'Master Bedroom Suite', Icon: BedDouble,      accent: '#8a9e8a',
     items: ['King Platform Bed', 'Wardrobe ×2', 'Nightstand ×2', 'Dresser'],
     original: 9800, bundle: 6490 },
-  { name: 'Dining Room Complete', emoji: '🍽️', accent: '#c4a878',
+  { name: 'Dining Room Complete', Icon: UtensilsCrossed, accent: '#c4a878',
     items: ['Dining Table', 'Dining Chair ×6', 'Sideboard', 'Pendant Light'],
     original: 6280, bundle: 4280 },
-  { name: 'Home Office Setup', emoji: '💼', accent: '#5a6070',
+  { name: 'Home Office Setup',    Icon: Briefcase,      accent: '#5a6070',
     items: ['Writing Desk', 'Ergonomic Chair', 'Storage Cabinet', 'Desk Lamp'],
     original: 4490, bundle: 2990 },
 ]
 
 const SHOWCASE = [
   { name: 'Emma W.', loc: 'London',   room: 'Living Room',  accent: '#c47858', initials: 'EW', rating: 5,
-    quote: 'LUMINA transformed my living room completely. The sofa is even more beautiful in person than online.' },
+    quote: 'P&M Craft transformed my living room completely. The sofa is even more beautiful in person than online.' },
   { name: 'James M.', loc: 'New York', room: 'Home Office',  accent: '#5a6070', initials: 'JM', rating: 5,
     quote: 'My home office now feels like a boutique workspace. The Aura Writing Desk is simply stunning.' },
   { name: 'Isabelle C.', loc: 'Paris', room: 'Bedroom',      accent: '#8a9e8a', initials: 'IC', rating: 5,
@@ -217,10 +220,15 @@ function RoomCard({ room, index, large }: { room: typeof ROOMS[0]; index: number
         style={{ background: room.accent }} />
 
       {/* Room icon */}
-      <div className="absolute top-5 left-5 w-10 h-10 rounded-full flex items-center justify-center"
-        style={{ background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(8px)' }}>
-        <span className="text-lg">{['🛋️','🛏️','🍽️','💼','🍳','🌿','🎨','🛎️'][index] ?? '🏠'}</span>
-      </div>
+      {(() => {
+        const RoomIcon = ROOMS[index]?.Icon ?? Home
+        return (
+          <div className="absolute top-5 left-5 w-10 h-10 rounded-full flex items-center justify-center"
+            style={{ background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(8px)' }}>
+            <RoomIcon size={18} className="text-[#6b6b6b]" />
+          </div>
+        )
+      })()}
 
       {/* Hover CTA */}
       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -247,7 +255,7 @@ function RoomCard({ room, index, large }: { room: typeof ROOMS[0]; index: number
 }
 
 // ─── Sub-category card ────────────────────────────────────────────
-function SubCard({ sub, accent }: { sub: { name: string; emoji: string; count: number }; accent: string }) {
+function SubCard({ sub, accent }: { sub: { name: string; Icon: LucideIcon; count: number }; accent: string }) {
   return (
     <motion.div
       whileHover={{ y: -3, transition: { duration: 0.2 } }}
@@ -255,7 +263,7 @@ function SubCard({ sub, accent }: { sub: { name: string; emoji: string; count: n
       style={{ background: '#fff', borderColor: 'rgba(44,44,44,0.08)' }}>
       <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3"
         style={{ background: accent + '18' }}>
-        <span className="text-xl">{sub.emoji}</span>
+        <sub.Icon size={18} style={{ color: accent }} />
       </div>
       <p className="text-sm font-medium mb-0.5" style={{ fontFamily: 'var(--font-serif)', color: '#1a1a1a' }}>
         {sub.name}
@@ -382,7 +390,7 @@ function PackageCard({ pkg, index }: { pkg: typeof ROOM_PACKAGES[0]; index: numb
       {/* Visual header */}
       <div className="relative h-40 flex items-center justify-center"
         style={{ background: `linear-gradient(135deg, ${pkg.accent}20, ${pkg.accent}40)` }}>
-        <span className="text-5xl group-hover:scale-110 transition-transform duration-300">{pkg.emoji}</span>
+        <pkg.Icon size={48} className="group-hover:scale-110 transition-transform duration-300" style={{ color: pkg.accent }} />
         <div className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold text-white"
           style={{ background: '#8b6914' }}>
           Save {pct}%
@@ -576,7 +584,16 @@ export default function RoomsPage({ onAddToCart, onWishlist, onQuickView, wishli
                 return (
                   <div className="flex items-center gap-4 mb-8 p-5 rounded-2xl border"
                     style={{ background: room.gradient, borderColor: 'rgba(44,44,44,0.06)' }}>
-                    <div className="text-4xl">{['🛋️','🛏️','🍽️','💼'][COLL_TABS.findIndex(t => t.id === activeCollection)] ?? '🏠'}</div>
+                    {(() => {
+                      const rm = ROOMS.find(r => r.id === activeCollection)
+                      const RoomIcon = rm?.Icon ?? Home
+                      return (
+                        <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                          style={{ background: (rm?.accent ?? '#8b6914') + '20' }}>
+                          <RoomIcon size={22} style={{ color: rm?.accent ?? '#8b6914' }} />
+                        </div>
+                      )
+                    })()}
                     <div>
                       <h3 className="font-medium mb-0.5" style={{ fontFamily: 'var(--font-serif)', color: '#1a1a1a', fontSize: '1.1rem' }}>
                         {room.name}
@@ -678,7 +695,7 @@ export default function RoomsPage({ onAddToCart, onWishlist, onQuickView, wishli
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center"
                   style={{ background: tip.accent + '18' }}>
-                  <span className="text-2xl">{tip.emoji}</span>
+                  <tip.Icon size={20} style={{ color: tip.accent }} />
                 </div>
                 <h3 className="font-medium" style={{ fontFamily: 'var(--font-serif)', color: '#1a1a1a' }}>
                   {tip.room}
@@ -720,7 +737,7 @@ export default function RoomsPage({ onAddToCart, onWishlist, onQuickView, wishli
       {/* ── Customer Showcase ─────────────────────────────────────── */}
       <section ref={showcaseRef as React.RefObject<HTMLElement>} className="py-20 max-w-[1400px] mx-auto px-6 lg:px-10">
         <SectionHeader eyebrow="Real Homes" headline="Customer Home Showcase"
-          sub="Thousands of LUMINA homes across the world. Here are some of our favourites." />
+          sub="Thousands of P&M Craft homes across the world. Here are some of our favourites." />
         <motion.div
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
           variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
@@ -849,7 +866,7 @@ export default function RoomsPage({ onAddToCart, onWishlist, onQuickView, wishli
             initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }}
             className="py-4 px-8 rounded-full text-sm font-medium max-w-md mx-auto"
             style={{ background: '#f0ebe3', color: '#8b6914', border: '1px solid #e8ddd0' }}>
-            ✓ Welcome to the LUMINA community, {email}
+            ✓ Welcome to the P&M Craft community, {email}
           </motion.div>
         )}
         <p className="text-[10px] mt-4" style={{ color: '#a0a0a0' }}>

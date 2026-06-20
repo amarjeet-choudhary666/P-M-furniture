@@ -59,7 +59,7 @@ export default function CheckoutModal({ open, items, onClose, onSuccess }: Check
             <div className="lg:w-2/5 flex-shrink-0 flex flex-col p-8 lg:p-10 overflow-y-auto bg-[#1a1a1a] relative">
               <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 30% 20%, #8b6914 0%, transparent 60%)' }} />
               <div className="relative z-10">
-                <p className="text-white text-2xl font-semibold mb-1" style={{ fontFamily: 'var(--font-serif)' }}>LUMINA</p>
+                <p className="text-white text-2xl font-semibold mb-1" style={{ fontFamily: 'var(--font-serif)' }}>P&M Craft</p>
                 <p className="text-[11px] uppercase tracking-widest mb-8 text-white/40">Order Summary</p>
 
                 <div className="space-y-4 mb-8">

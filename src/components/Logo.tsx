@@ -28,10 +28,10 @@ export default function Logo({ variant = 'dark', size = 'md', animated = false }
       </span>
       <div className="flex flex-col justify-center gap-0.5 ml-1">
         <div className={`h-px w-6 ${variant === 'light' ? 'bg-[#c49a3a]' : 'bg-[#8b6914]'}`} />
-        <span 
+        <span
           className={`text-[10px] tracking-[0.3em] uppercase ${variant === 'light' ? 'text-white/60' : 'text-[#6b6b6b]'}`}
         >
-          Furniture
+          Craft
         </span>
       </div>
     </div>

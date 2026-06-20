@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Leaf, Shield, Truck, RotateCcw, Hammer, Star } from 'lucide-react'
+import { Leaf, Shield, Truck, RotateCcw, Hammer, Star, type LucideIcon } from 'lucide-react'
 
 const FEATURES = [
   { icon: Leaf,     title: 'Sustainably Sourced',   desc: 'Every piece is crafted from FSC-certified wood and recycled materials, carbon-offset delivery included.',             color: '#5a9a5a', bg: '#f0f7f0' },
@@ -7,14 +7,14 @@ const FEATURES = [
   { icon: Shield,   title: '10-Year Warranty',       desc: 'Every structural component is backed by a decade-long guarantee — no questions asked.',                            color: '#5a80c8', bg: '#f0f2fc' },
   { icon: Truck,    title: 'White Glove Delivery',   desc: 'Our delivery team assembles your furniture in-room, removes packaging, and cleans up after.',                     color: '#9a5aaa', bg: '#f7f0fc' },
   { icon: RotateCcw,title: '30-Day Free Returns',    desc: "Not in love? We'll pick it up for free and refund you within 3 business days.",                                   color: '#c4605a', bg: '#fdf0f0' },
-  { icon: Star,     title: '4.9★ Rated',             desc: 'Over 50,000 happy customers and a 4.9-star average across 12,000+ verified reviews.',                             color: '#c49a3a', bg: '#fdf8ec' },
+  { icon: Star,     title: '4.9 Rated',               desc: 'Over 50,000 happy customers and a 4.9-star average across 12,000+ verified reviews.',                             color: '#c49a3a', bg: '#fdf8ec' },
 ]
 
-const STATS = [
-  { value: '50K+',  label: 'Happy Customers' },
-  { value: '2,400+',label: 'Products' },
-  { value: '10yr',  label: 'Warranty' },
-  { value: '4.9★',  label: 'Average Rating' },
+const STATS: { value: string; label: string; icon?: LucideIcon }[] = [
+  { value: '50K+',   label: 'Happy Customers' },
+  { value: '2,400+', label: 'Products' },
+  { value: '10yr',   label: 'Warranty' },
+  { value: '4.9',    label: 'Average Rating', icon: Star },
 ]
 
 export default function FeaturesSection() {
@@ -25,13 +25,13 @@ export default function FeaturesSection() {
         {/* Heading */}
         <motion.div initial={{ opacity:0, y:40 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.8 }}
           className="text-center mb-16">
-          <span className="section-label mb-4">Why LUMINA</span>
+          <span className="section-label mb-4">Why P&M Craft</span>
           <h2 className="max-w-2xl mx-auto font-semibold leading-tight text-[#1a1a1a]"
             style={{ fontFamily:'var(--font-serif)', fontSize:'clamp(2rem,5vw,3.6rem)' }}>
             Every Detail,<br /><span className="gradient-text">Considered</span>
           </h2>
           <p className="mt-4 max-w-xl mx-auto text-base leading-relaxed text-[#6b6b6b]">
-            We believe great furniture should last a lifetime. That's why every LUMINA piece
+            We believe great furniture should last a lifetime. That's why every P&M Craft piece
             is built with obsessive attention to quality, sustainability, and design.
           </p>
         </motion.div>
@@ -74,7 +74,10 @@ export default function FeaturesSection() {
                 className="flex flex-col items-center justify-center py-12 px-6 text-center"
                 style={{ borderRight: i < STATS.length-1 ? '1px solid rgba(255,255,255,0.08)' : 'none' }}
               >
-                <span className="text-4xl font-semibold text-white mb-2" style={{ fontFamily:'var(--font-serif)' }}>{stat.value}</span>
+                <span className="text-4xl font-semibold text-white mb-2 flex items-center gap-1.5" style={{ fontFamily:'var(--font-serif)' }}>
+                  {stat.value}
+                  {stat.icon && <stat.icon size={22} className="fill-[#c49a3a] text-[#c49a3a]" />}
+                </span>
                 <span className="text-[11px] uppercase tracking-widest text-white/45">{stat.label}</span>
               </motion.div>
             ))}

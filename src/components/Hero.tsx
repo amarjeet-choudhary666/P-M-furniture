@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
-import { ArrowRight, Play } from 'lucide-react'
+import { ArrowRight, Play, Star } from 'lucide-react'
 
 const SLIDES = [
   {
@@ -184,9 +184,11 @@ export default function Hero({ onShopClick }: { onShopClick: () => void }) {
           transition={{ delay: 0.8 }}
           className="flex items-center gap-10 mt-16"
         >
-          {[['2,400+', 'Products'], ['140+', 'Countries'], ['4.9★', 'Rating']].map(([val, label]) => (
+          {([['2,400+', 'Products', false], ['140+', 'Countries', false], ['4.9', 'Rating', true]] as [string, string, boolean][]).map(([val, label, star]) => (
             <div key={label}>
-              <div className="text-white font-semibold text-xl" style={{ fontFamily: 'var(--font-serif)' }}>{val}</div>
+              <div className="text-white font-semibold text-xl flex items-center gap-1" style={{ fontFamily: 'var(--font-serif)' }}>
+                {val}{star && <Star size={14} className="fill-[#c49a3a] text-[#c49a3a]" />}
+              </div>
               <div className="text-[11px] uppercase tracking-widest mt-0.5 text-white/45">{label}</div>
             </div>
           ))}

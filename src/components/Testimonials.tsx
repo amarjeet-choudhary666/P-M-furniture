@@ -11,7 +11,7 @@ const REVIEWS = [
     color: '#c49a3a',
     rating: 5,
     product: 'Velour Cloud Sofa',
-    text: 'I was skeptical ordering a sofa online, but LUMINA made it effortless. The White Glove delivery team assembled everything and it looks even better than the photos. This sofa is the centrepiece of our living room now.',
+    text: 'I was skeptical ordering a sofa online, but P&M Craft made it effortless. The White Glove delivery team assembled everything and it looks even better than the photos. This sofa is the centrepiece of our living room now.',
   },
   {
     id: 2,

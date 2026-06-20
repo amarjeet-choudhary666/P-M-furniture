@@ -32,7 +32,7 @@ const TIMELINE = [
   { year: '2013', title: 'First Flagship Store', desc: 'Opened our Manhattan showroom, bringing the studio experience to customers.' },
   { year: '2017', title: 'Sustainability Pledge', desc: 'Committed to 100% FSC-certified wood and carbon-neutral shipping.' },
   { year: '2020', title: 'Global Expansion', desc: 'Launched shipping to 40+ countries and opened our London atelier.' },
-  { year: '2024', title: 'LUMINA Online', desc: 'Digital-first flagship with AR room planning and White Glove delivery.' },
+  { year: '2024', title: 'P&M Craft Online', desc: 'Digital-first flagship with AR room planning and White Glove delivery.' },
 ]
 
 const PHILOSOPHY = [
@@ -64,7 +64,7 @@ const TEAM = [
     role: 'Founder & Creative Director',
     initials: 'EA',
     color: '#8b6914',
-    bio: 'Former architect turned furniture designer, Eleanor founded LUMINA with a conviction that everyday objects deserve the same care as great buildings.',
+    bio: 'Former architect turned furniture designer, Eleanor founded P&M Craft with a conviction that everyday objects deserve the same care as great buildings.',
   },
   {
     name: 'Marcus Webb',
@@ -78,7 +78,7 @@ const TEAM = [
     role: 'Chief Sustainability Officer',
     initials: 'PN',
     color: '#5a9a6a',
-    bio: 'Priya has spent her career pushing manufacturers toward responsible practices. At LUMINA she turns those convictions into concrete commitments.',
+    bio: 'Priya has spent her career pushing manufacturers toward responsible practices. At P&M Craft she turns those convictions into concrete commitments.',
   },
   {
     name: 'James Okafor',
@@ -115,7 +115,7 @@ const WHY_US = [
 const TESTIMONIALS = [
   { initials: 'SA', color: '#c49a3a', name: 'Sofia Andersen',  loc: 'Copenhagen, DK', rating: 5, text: 'The Oslo Sofa arrived in perfect condition and looks even better in person. The craftsmanship detail is extraordinary — I genuinely feel I bought something that will last my lifetime.' },
   { initials: 'TR', color: '#5a80c8', name: 'Tomás Reyes',    loc: 'Barcelona, ES',  rating: 5, text: 'Ordered the Atelier dining set for our open-plan kitchen. The delivery team was professional, assembly was seamless, and the quality surpassed anything I\'ve had from other brands.' },
-  { initials: 'LC', color: '#5a9a6a', name: 'Lena Christoph',  loc: 'Berlin, DE',     rating: 5, text: 'LUMINA is the rare brand that lives up to its own photography. My home looks like a magazine shoot now, and guests ask about the furniture constantly.' },
+  { initials: 'LC', color: '#5a9a6a', name: 'Lena Christoph',  loc: 'Berlin, DE',     rating: 5, text: 'P&M Craft is the rare brand that lives up to its own photography. My home looks like a magazine shoot now, and guests ask about the furniture constantly.' },
 ]
 
 const STATS = [
@@ -433,7 +433,7 @@ function StoryText() {
       <SectionHeading>A Workshop Born from a Love of Real Materials</SectionHeading>
       <div className="space-y-5 text-[#6b6b6b] leading-relaxed text-[15px]" style={{ fontFamily: 'var(--font-sans)' }}>
         <p>
-          LUMINA began in a 400-square-foot Brooklyn workshop in 2009. Our founder, Eleanor Ashford, had spent a decade as an architect, growing frustrated that the furniture industry had traded longevity for trend cycles. She started building pieces for herself — and soon for friends, then strangers.
+          P&M Craft began in a 400-square-foot Brooklyn workshop in 2009. Our founder, Eleanor Ashford, had spent a decade as an architect, growing frustrated that the furniture industry had traded longevity for trend cycles. She started building pieces for herself — and soon for friends, then strangers.
         </p>
         <p>
           Fifteen years on, we employ over 120 craftspeople across our New York studio and partner workshops in Portugal and Japan. The materials are different — better — but the conviction is unchanged: furniture should be honest about what it is made of and designed to outlast every trend.
@@ -515,7 +515,7 @@ function TeamSection() {
         variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'}
         className="text-center mb-14">
         <SectionLabel>The People</SectionLabel>
-        <SectionHeading>Meet the Team Behind LUMINA</SectionHeading>
+        <SectionHeading>Meet the Team Behind P&M Craft</SectionHeading>
       </motion.div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {TEAM.map((member, i) => <TeamCard key={member.name} {...member} delay={i} />)}
@@ -681,7 +681,7 @@ function WhyUsSection() {
       <motion.div ref={ref as React.RefObject<HTMLDivElement>}
         variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'}
         className="text-center mb-14">
-        <SectionLabel>Why LUMINA</SectionLabel>
+        <SectionLabel>Why P&M Craft</SectionLabel>
         <SectionHeading>Everything You Deserve, Nothing You Don't</SectionHeading>
       </motion.div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">

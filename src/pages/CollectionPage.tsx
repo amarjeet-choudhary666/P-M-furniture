@@ -7,7 +7,7 @@ import {
   Shield, Truck, RotateCcw, CreditCard,
   Grid3X3, List, ChevronLeft,
   Sofa, BedDouble, UtensilsCrossed, Briefcase, Lamp,
-  LayoutGrid, TreePine
+  LayoutGrid, TreePine, CheckCircle
 } from 'lucide-react'
 import type { Product } from '../data/products'
 import { PRODUCTS } from '../data/products'
@@ -351,7 +351,7 @@ export default function CollectionPage({ onAddToCart, onWishlist, onQuickView, w
             className="text-center mb-12">
             <span className="section-label mb-3">Our Promise</span>
             <h2 className="font-semibold text-[#1a1a1a]" style={{ fontFamily:'var(--font-serif)', fontSize:'clamp(1.8rem,4vw,3rem)' }}>
-              Why Choose LUMINA
+              Why Choose P&M Craft
             </h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -542,7 +542,7 @@ function FilterContent({ priceRange, setPriceRange, selectedMaterials, toggleMat
             <label key={m} className="flex items-center gap-3 cursor-pointer group">
               <div onClick={() => toggleMaterial(m)}
                 className={`w-4 h-4 rounded flex items-center justify-center border transition-all flex-shrink-0 ${selectedMaterials.includes(m) ? 'bg-[#1a1a1a] border-[#1a1a1a]' : 'border-black/20 group-hover:border-[#1a1a1a]'}`}>
-                {selectedMaterials.includes(m) && <span className="text-white text-[10px]">✓</span>}
+                {selectedMaterials.includes(m) && <CheckCircle size={10} className="text-white flex-shrink-0" />}
               </div>
               <span className="text-sm text-[#2c2c2c] group-hover:text-[#1a1a1a] transition-colors">{m}</span>
             </label>
@@ -566,7 +566,7 @@ function FilterContent({ priceRange, setPriceRange, selectedMaterials, toggleMat
         <label className="flex items-center gap-3 cursor-pointer group">
           <div onClick={() => setInStockOnly(!inStockOnly)}
             className={`w-4 h-4 rounded flex items-center justify-center border transition-all ${inStockOnly ? 'bg-[#1a1a1a] border-[#1a1a1a]' : 'border-black/20'}`}>
-            {inStockOnly && <span className="text-white text-[10px]">✓</span>}
+            {inStockOnly && <CheckCircle size={10} className="text-white flex-shrink-0" />}
           </div>
           <span className="text-sm text-[#2c2c2c]">In Stock Only</span>
         </label>
@@ -821,7 +821,7 @@ function NewsletterSection() {
           {submitted ? (
             <motion.div initial={{ scale:0.9, opacity:0 }} animate={{ scale:1, opacity:1 }}
               className="flex items-center justify-center gap-3 text-[#c49a3a] font-medium">
-              <span className="text-2xl">✓</span> You're on the list! Welcome to LUMINA.
+              <CheckCircle size={20} className="flex-shrink-0" /> You're on the list! Welcome to P&M Craft.
             </motion.div>
           ) : (
             <form onSubmit={(e) => { e.preventDefault(); if(email) setSubmitted(true) }}

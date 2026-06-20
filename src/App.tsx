@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle, ArrowUp } from 'lucide-react'
 
 import LoadingScreen   from './components/LoadingScreen'
 import Cursor          from './components/Cursor'
@@ -78,7 +78,7 @@ function BackToTop() {
           onClick={() => window.scrollTo({ top:0, behavior:'smooth' })}
           className="fixed bottom-6 right-6 w-11 h-11 rounded-full flex items-center justify-center shadow-lg z-[800] bg-[#2c2c2c] text-white font-bold text-lg"
           whileHover={{ scale:1.1 }} whileTap={{ scale:0.9 }} aria-label="Back to top">
-          ↑
+          <ArrowUp size={18} />
         </motion.button>
       )}
     </AnimatePresence>
@@ -288,7 +288,7 @@ export default function App() {
       <CheckoutModal
         open={checkoutOpen} items={cartItems}
         onClose={() => setCheckoutOpen(false)}
-        onSuccess={() => { setCartItems([]); addToast('Order placed! Thank you for shopping with LUMINA.') }}
+        onSuccess={() => { setCartItems([]); addToast('Order placed! Thank you for shopping with P&M Craft.') }}
       />
       <ToastContainer toasts={toasts} />
     </>

@@ -124,7 +124,7 @@ export default function Footer() {
           style={{ borderColor: 'rgba(255,255,255,0.07)' }}>
           {[
             { Icon: MapPin, text: '45 Design District, New York, NY 10014' },
-            { Icon: Mail,   text: 'hello@lumina.design' },
+            { Icon: Mail,   text: 'hello@pmcraft.com' },
             { Icon: Phone,  text: '+1 (800) 586-4621' },
           ].map(({ Icon, text }) => (
             <div key={text} className="flex items-center gap-3">
@@ -138,7 +138,7 @@ export default function Footer() {
         <div className="border-t pt-8 flex flex-col sm:flex-row items-center justify-between gap-3"
           style={{ borderColor: 'rgba(255,255,255,0.07)' }}>
           <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>
-            © 2025 LUMINA Luxury Furniture. All rights reserved.
+            © 2025 P&M Craft. All rights reserved.
           </p>
           <div className="flex gap-6">
             {['Privacy Policy', 'Terms of Service', 'Cookie Preferences'].map((t) => (

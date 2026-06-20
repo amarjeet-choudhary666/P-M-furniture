@@ -321,11 +321,43 @@ function PlannerPhase({
         </div>
       </div>
 
-      {/* ── 3-column layout ── */}
-      <div className="flex gap-4">
+      {/* ── Main layout (desktop: 3-col, mobile: stacked) ── */}
+      <div className="flex flex-col gap-3">
 
-        {/* Left: Furniture palette */}
-        <div className="w-48 flex-shrink-0">
+        {/* Mobile: Horizontal furniture strip */}
+        <div className="lg:hidden overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex gap-2 min-w-max">
+            {FURNITURE_ITEMS.map(item => (
+              <button key={item.id}
+                onClick={() => setSelected(item)}
+                className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl border transition-all"
+                style={{
+                  background: selected.id === item.id ? '#1a1a1a' : '#fff',
+                  borderColor: selected.id === item.id ? '#1a1a1a' : 'rgba(44,44,44,0.08)',
+                  minWidth: '68px',
+                }}>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center"
+                  style={{ background: selected.id === item.id ? 'rgba(255,255,255,0.1)' : item.color + '25' }}>
+                  <item.Icon size={14} style={{ color: selected.id === item.id ? '#fff' : item.color }} />
+                </div>
+                <span className="text-[10px] font-medium leading-tight text-center"
+                  style={{ color: selected.id === item.id ? '#fff' : '#1a1a1a' }}>
+                  {item.label.split(' ')[0]}
+                </span>
+                <span className="text-[9px]"
+                  style={{ color: selected.id === item.id ? 'rgba(255,255,255,0.5)' : '#9a9a9a' }}>
+                  ${item.price >= 1000 ? (item.price / 1000).toFixed(1) + 'k' : item.price}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop row: palette + grid + scores */}
+        <div className="flex gap-4">
+
+        {/* Left: Furniture palette (desktop only) */}
+        <div className="hidden lg:block w-48 flex-shrink-0">
           <div className="flex flex-wrap gap-1 mb-3">
             {allCats.slice(0, 6).map(cat => (
               <button key={cat}
@@ -556,8 +588,89 @@ function PlannerPhase({
               </div>
             </div>
           )}
-        </div>
-      </div>
+        </div>{/* end right panel */}
+
+        </div>{/* end desktop row */}
+
+        {/* Mobile: Compact scores + AI + cart */}
+        <div className="lg:hidden grid grid-cols-2 gap-3">
+
+          {/* Score card */}
+          <div className="rounded-2xl p-3.5 border" style={{ background: '#fff', borderColor: 'rgba(44,44,44,0.08)' }}>
+            <div className="flex items-center gap-1.5 mb-2.5">
+              <Star size={11} className="fill-[#c49a3a] text-[#c49a3a]" />
+              <span className="text-[11px] font-medium" style={{ color: '#1a1a1a' }}>Score</span>
+              <span className="ml-auto text-xl font-semibold"
+                style={{ fontFamily: 'var(--font-serif)', color: '#1a1a1a' }}>{scores.overall}/100</span>
+            </div>
+            {([
+              ['Comfort',  scores.comfort  ],
+              ['Space',    scores.space    ],
+              ['Lighting', scores.lighting ],
+              ['Balance',  scores.balance  ],
+            ] as [string, number][]).map(([label, val]) => (
+              <div key={label} className="mb-1.5">
+                <div className="flex justify-between text-[10px] mb-0.5">
+                  <span style={{ color: '#9a9a9a' }}>{label}</span>
+                  <span style={{ color: '#4a4a4a' }}>{val}</span>
+                </div>
+                <div className="h-1 rounded-full" style={{ background: '#f0ebe3' }}>
+                  <motion.div className="h-full rounded-full"
+                    style={{ background: 'linear-gradient(90deg,#8b6914,#c49a3a)' }}
+                    initial={{ width: 0 }}
+                    animate={{ width: `${val}%` }}
+                    transition={{ duration: 0.5, ease: EASE }} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Cart + AI tips */}
+          <div className="flex flex-col gap-2.5">
+            {placed.length > 0 && (
+              <div className="rounded-2xl border overflow-hidden" style={{ borderColor: 'rgba(44,44,44,0.08)' }}>
+                <div className="px-3 py-2.5 bg-white flex items-center justify-between"
+                  style={{ borderBottom: '1px solid #f0ebe3' }}>
+                  <div className="flex items-center gap-1.5">
+                    <ShoppingBag size={11} style={{ color: '#1a1a1a' }} />
+                    <span className="text-[10px] font-medium" style={{ color: '#1a1a1a' }}>{placed.length} items</span>
+                  </div>
+                  <span className="text-sm font-semibold"
+                    style={{ fontFamily: 'var(--font-serif)', color: '#1a1a1a' }}>
+                    ${totalCost.toLocaleString()}
+                  </span>
+                </div>
+                <button onClick={onFinish}
+                  className="w-full py-2 text-[11px] font-medium text-white flex items-center justify-center gap-1 hover:opacity-90 transition-opacity"
+                  style={{ background: '#1a1a1a' }}>
+                  Review <ArrowRight size={10} />
+                </button>
+              </div>
+            )}
+            <button
+              onClick={() => setShowTips(t => !t)}
+              className="py-2.5 rounded-xl text-[11px] font-medium flex items-center justify-center gap-1.5 border transition-colors"
+              style={{ borderColor: '#e8ddd0', color: '#8b6914', background: '#fff' }}>
+              <Sparkles size={11} /> {showTips ? 'Hide' : 'Show'} AI Tips
+            </button>
+            {showTips && (
+              <div className="rounded-xl p-3 border" style={{ background: '#1C1714', borderColor: 'rgba(196,154,58,0.15)' }}>
+                <ul className="space-y-1.5">
+                  {aiTips.slice(0, 2).map((tip, i) => (
+                    <li key={i} className="text-[10px] leading-snug flex items-start gap-1"
+                      style={{ color: 'rgba(255,255,255,0.62)' }}>
+                      <span className="flex-shrink-0" style={{ color: '#c49a3a' }}>›</span>
+                      {tip}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+        </div>{/* end mobile panel */}
+
+      </div>{/* end outer wrapper */}
     </div>
   )
 }

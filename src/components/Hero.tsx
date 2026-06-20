@@ -182,7 +182,7 @@ export default function Hero({ onShopClick }: { onShopClick: () => void }) {
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="flex items-center gap-10 mt-16"
+          className="flex items-center gap-6 sm:gap-10 mt-12 sm:mt-16"
         >
           {([['2,400+', 'Products', false], ['140+', 'Countries', false], ['4.9', 'Rating', true]] as [string, string, boolean][]).map(([val, label, star]) => (
             <div key={label}>

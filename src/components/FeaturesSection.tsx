@@ -71,10 +71,16 @@ export default function FeaturesSection() {
               <motion.div key={stat.label}
                 initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
                 transition={{ delay:i*0.1 }}
-                className="flex flex-col items-center justify-center py-12 px-6 text-center"
-                style={{ borderRight: i < STATS.length-1 ? '1px solid rgba(255,255,255,0.08)' : 'none' }}
+                className={`flex flex-col items-center justify-center py-8 sm:py-12 px-4 sm:px-6 text-center border-white/[0.08] ${
+                  [
+                    'border-r border-b lg:border-b-0',
+                    'border-b border-white/[0.08] lg:border-b-0 lg:border-r',
+                    'border-r',
+                    '',
+                  ][i]
+                }`}
               >
-                <span className="text-4xl font-semibold text-white mb-2 flex items-center gap-1.5" style={{ fontFamily:'var(--font-serif)' }}>
+                <span className="text-3xl sm:text-4xl font-semibold text-white mb-2 flex items-center gap-1.5" style={{ fontFamily:'var(--font-serif)' }}>
                   {stat.value}
                   {stat.icon && <stat.icon size={22} className="fill-[#c49a3a] text-[#c49a3a]" />}
                 </span>

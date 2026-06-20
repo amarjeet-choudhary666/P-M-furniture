@@ -542,7 +542,7 @@ export default function RoomsPage({ onAddToCart, onWishlist, onQuickView, wishli
         <SectionHeader eyebrow="All Spaces" headline="Which Room Are You Designing?"
           sub="Select a room to explore furniture curated specifically for that space." />
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[160px] sm:auto-rows-[200px]"
           variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
           initial="hidden"
           animate={gridIn ? 'visible' : 'hidden'}>
@@ -629,9 +629,9 @@ export default function RoomsPage({ onAddToCart, onWishlist, onQuickView, wishli
           initial={{ opacity: 0 }}
           animate={gallIn ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6 }}
-          style={{ columns: '2 260px', columnGap: '16px' }}>
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {GALLERY.map((item, i) => (
-            <div key={i} style={{ breakInside: 'avoid' }}>
+            <div key={i}>
               <GalleryCard item={item} />
             </div>
           ))}
@@ -684,7 +684,7 @@ export default function RoomsPage({ onAddToCart, onWishlist, onQuickView, wishli
         <SectionHeader eyebrow="Expert Advice" headline="Styling Tips from Our Designers"
           sub="Simple principles that make any room feel curated and complete." />
         <motion.div
-          className="grid md:grid-cols-3 gap-6"
+          className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           initial="hidden"
           animate={tipsIn ? 'visible' : 'hidden'}>
@@ -866,7 +866,7 @@ export default function RoomsPage({ onAddToCart, onWishlist, onQuickView, wishli
             initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }}
             className="py-4 px-8 rounded-full text-sm font-medium max-w-md mx-auto"
             style={{ background: '#f0ebe3', color: '#8b6914', border: '1px solid #e8ddd0' }}>
-            ✓ Welcome to the P&M Craft community, {email}
+            Welcome to the P&M Craft community, {email}
           </motion.div>
         )}
         <p className="text-[10px] mt-4" style={{ color: '#a0a0a0' }}>

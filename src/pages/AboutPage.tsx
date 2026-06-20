@@ -765,7 +765,7 @@ function GallerySection() {
           Peek inside the spaces where your furniture is conceived, crafted, and curated.
         </p>
       </motion.div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {GALLERY_TILES.map((tile, i) => (
           <GalleryTile key={tile.label} bg={tile.bg} label={tile.label} delay={i * 0.15} />
         ))}
@@ -785,7 +785,7 @@ function StatsSection() {
               variants={fadeUp} custom={i * 0.2}
               initial="hidden" animate={inView ? 'visible' : 'hidden'}
             >
-              <p className="text-5xl lg:text-6xl font-medium gradient-text mb-2" style={{ fontFamily: 'var(--font-serif)' }}>{value}</p>
+              <p className="text-3xl sm:text-5xl lg:text-6xl font-medium gradient-text mb-2" style={{ fontFamily: 'var(--font-serif)' }}>{value}</p>
               <p className="text-white/50 text-sm uppercase tracking-[0.12em]" style={{ fontFamily: 'var(--font-sans)' }}>{label}</p>
             </motion.div>
           ))}

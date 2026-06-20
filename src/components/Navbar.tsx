@@ -14,7 +14,7 @@ interface NavbarProps {
 
 const NAV_LINKS = ['Collections', 'Rooms', 'New Arrivals', 'Sale', 'About']
 
-export default function Navbar({ cartCount, wishlistCount, onCartOpen, onWishlistOpen, currentPage, onNavigate }: NavbarProps) {
+export default function Navbar({ cartCount, wishlistCount, onCartOpen, onWishlistOpen, currentPage: _currentPage, onNavigate }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
